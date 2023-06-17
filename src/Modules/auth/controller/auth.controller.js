@@ -11,7 +11,7 @@ export const register = async (req,res)=>{
     else{
         const hashPassword = Hash(password)
         const token = createToken({email},process.env.EMAIL_TOKEN)
-        const link =`localhost:3000/auth/confirmemail/${token}`
+        const link =`https://saraha-bmai.onrender.com/auth/confirmemail/${token}`
        await sendEmail(email,`please ${uname} verify your email`,`<a href ='${link}' target='_blank'>confirm your email</a>`)
         const createUser = await userModel.create({uname,email,password:hashPassword})
         return res.status(201).json({message:"success",user:createUser})
